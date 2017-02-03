@@ -1,0 +1,8 @@
+<p>
+<% for (var i = 0; i < tweet.length; i++) { %>
+  Followers: <%= tweet[i].user.followers_count %> <br/>
+  Nombre: <%= tweet[i].user.screen_name %> <br/>
+  Texto: <%= tweet[i].text %> <br/>
+<% } %>
+
+</p>

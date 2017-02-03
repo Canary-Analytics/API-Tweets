@@ -1,0 +1,22 @@
+{
+  "name": "api-tweets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Canary-Analytics/API-Tweets.git"
+  },
+  "author": "TODO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Canary-Analytics/API-Tweets/issues"
+  },
+  "homepage": "https://github.com/Canary-Analytics/API-Tweets#readme",
+  "dependencies": {
+    "twitter": "^1.7.0"
+  }
+}
