@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Datos - Canary Analytics</title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a id="logolink" class="navbar-brand" href="/">Canary Analytics</a>
+            </div>
+        </nav>
+
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
+                    </li>
+                    <li>
+                        <a class="active-menu" href="/datos"><i class="fa fa-dashboard"></i> Datos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Dashboard <small> Estadísticas. </small>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- /. ROW  -->
+                <div class="row">
+                    <form method="post" action="/search">
+                        <div class="col-sm-10">
+                            <input type="input" name="valor[v1]" class="form-control">
+                        </div>
+                        <input class="btn btn-default" type="submit" value="Enviar">
+                    </form>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Ejemplo</th>
+                            </tr>
+                            <tr>
+                                <td>Búsqueda simple</td>
+                                <td>Búsqueda de términos, ya sea uno o varios. Es el operador por defecto</td>
+                                <td><b>«Super Bowl»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Búsqueda avanzada</td>
+                                <td>Búsqueda de términos, en este caso la busqueda es literal.</td>
+                                <td><b>«"Super Bowl"»</b></td>
+                            </tr>
+                            <tr>
+                                <td>OR</td>
+                                <td>La búsqueda la realiza en los tweets que sólo contenga uno de los términos</td>
+                                <td><b>«Patriots OR Falcons»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Exclusión</td>
+                                <td>Realiza una búsqueda que contenga el término Patriots pero no Falcons</td>
+                                <td><b>«Patriots -Falcons»</b></td>
+                            </tr>
+                            <tr>
+                                <td>#Hashtag</td>
+                                <td>Realiza una búsqueda del hashtag en cuestión.</td>
+                                <td><b>«#SuperBowl»</b></td>
+                            </tr>
+                            <tr>
+                                <td>TL de un usuario/td>
+                                <td>Lista la TL de un usuario</td>
+                                <td><b>«from:SuperBowl»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Lista</td>
+                                <td>Muestra los tweets pertenecientes a una lista.</td>
+                                <td><b>«list:NFL/Greatest-Show»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Respuestas</td>
+                                <td>Muestra los tweets con las respuestas a un usuario</td>
+                                <td><b>«to:SuperBowl»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Menciones a un usuario</td>
+                                <td>Muestra los tweets con menciones a un usuario</td>
+                                <td><b>«@SuperBowl»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Tweets sensibles</td>
+                                <td>Muestra los tweets con contenido sensible.</td>
+                                <td><b>«SuperBowl filter:safe»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Imagenes o vídeos</td>
+                                <td>Muestra los tweets que contienen imágenes o videos.</td>
+                                <td><b>«SuperBowl filter:media»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Contiene vídeo</td>
+                                <td>Muestra los tweets que contienen video, Vine o periscope</td>
+                                <td><b>«SuperBowl filter:native_video»</b></td>
+                            </tr>
+                            <tr>
+                                <td>Contenido de plataformas</td>
+                                <td>Muestra los tweets que contiene periscope, vine, images, twimg, links</td>
+                                <td><b>«SuperBowl filter:[contenido]»</b></td>
+                            </tr>
+                            <tr>
+                                <td>TL fechas</td>
+                                <td>Muestra los tweets por fechas según los parámetros since o until.</td>
+                                <td><b>«SuperBowl [parametro]:2017-01-05»</b></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+                <footer>
+                    <p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p>
+                </footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- Custom Js -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>
