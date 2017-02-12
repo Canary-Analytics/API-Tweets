@@ -3,7 +3,12 @@ const passport = require('passport');
 const Strategy = require('passport-twitter').Strategy;
 const Twitter = require('twitter');
 const app = express();
-let client;
+const client = new Twitter({
+    consumer_key: 'aDay6jhWc9b3y3Z31BRx6uXVc',
+    consumer_secret: '6vbURPCBJSSQakw2t6eHvAY01HBong3rjnQbtGcr34ZNateN0s',
+    access_token_key: '827584840677617664-GCqacrqLnyTUcYUTkHzP4tpwYb7wW5y',
+    access_token_secret: '9rPagouJR4nUgbvrgmUQH8EISDEknl0s7ipeBPwuZB8NC'
+});
 
 passport.use(new Strategy({
         consumerKey: 'aDay6jhWc9b3y3Z31BRx6uXVc',
@@ -11,13 +16,6 @@ passport.use(new Strategy({
         callbackURL: 'http://localhost:8080/login/twitter/return'
     },
     (token, tokenSecret, profile, cb) => {
-        client = new Twitter({
-            consumer_key: 'aDay6jhWc9b3y3Z31BRx6uXVc',
-            consumer_secret: '6vbURPCBJSSQakw2t6eHvAY01HBong3rjnQbtGcr34ZNateN0s',
-            access_token_key: '827584840677617664-GCqacrqLnyTUcYUTkHzP4tpwYb7wW5y',
-            access_token_secret: '9rPagouJR4nUgbvrgmUQH8EISDEknl0s7ipeBPwuZB8NC'
-        });
-
         return cb(null, profile);
     }));
 
@@ -58,7 +56,7 @@ app.get('/login', (req, res) => {
 app.get('/login/twitter', passport.authenticate('twitter'));
 
 app.get('/login/twitter/return', passport.authenticate('twitter', { failureRedirect: '/login' }), (req, res) => {
-        res.redirect('/');
+        res.redirect('/profile');
 });
 
 app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
@@ -71,9 +69,7 @@ app.get('/busqueda', require('connect-ensure-login').ensureLoggedIn(), (req, res
 
 app.post('/search', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
     console.log("Valor 1: " + req.body.valor.v1);
-    client.get('search/tweets', {
-        q: req.body.valor.v1
-    }, (error, tweets, response) => {
+    client.get('search/tweets', { q: req.body.valor.v1 }, (error, tweets, response) => {
         for (var i = 0; i < tweets.statuses.length; i++) {
             console.log(tweets.statuses[i].user.screen_name);
         }
@@ -81,5 +77,5 @@ app.post('/search', require('connect-ensure-login').ensureLoggedIn(), (req, res)
 })
 
 app.listen(app.get('port'), () => {
-    console.log(`Node app is running at localhost: ${app.get('port')}` );
+    console.log(`Node app is running at localhost: ${app.get('port')}`);
 });
