@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Canary Analytics</title>
+    <title>Resultados - Canary Analytics</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -13,6 +13,7 @@
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- JQuery -->
 </head>
 
 <body>
@@ -32,17 +33,21 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
+
                     <li>
                         <a href="/"><i class="fa fa-home"></i> Home</a>
                     </li>
                     <li>
-                        <a class="active-menu" href="/login"><i class="fa fa-sign-in"></i> Log In</a>
+                        <a href="/login"><i class="fa fa-sign-in"></i> Log In</a>
                     </li>
                     <li>
                         <a href="/profile"><i class="fa fa-user"></i> Perfil</a>
                     </li>
                     <li>
                         <a href="/busqueda"><i class="fa fa-search"></i> Busqueda</a>
+                    </li>
+                    <li>
+                        <a class="active-menu" href="/busqueda"><i class="fa fa-folder-o"></i> Resultados</a>
                     </li>
                 </ul>
             </div>
@@ -53,31 +58,52 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                          Login <small> Twitter </small>
+                          Resultados <small> Twitter </small>
                       </h1>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-12">
-                        <% if (!user) { %>
-                            <div>
-                              Bienvenido, <a href="/login/twitter">Inicie sesión con Twitter</a>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Resultados de la búsqueda
                             </div>
-                        <% } else { %>
-                            <div>
-                                Hola, <%= user.username %>. Consulta tu <a href="/profile">perfil</a> o realiza una <a href="/busqueda">busqueda</a>.
-                            </div>
-                        <% } %>
+                                <div class="table-responsive">
+                                    <table width="200px" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Usuario</th>
+                                                <th>Texto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (let i = 0; i < resultado.length; i++) { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= resultado[i].user.screen_name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= resultado[i].text %>
+                                                    </td>
+                                                </tr>
+                                              <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
-
-    <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Custom Js -->
-    <script src="js/index.js"></script>
+        <!-- JS Scripts-->
+        <!-- jQuery Js -->
+        <script src="assets/js/jquery-1.10.2.js"></script>
+        <!-- Bootstrap Js -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- Custom Js -->
+        <script src="js/index.js"></script>
 
 </body>
 

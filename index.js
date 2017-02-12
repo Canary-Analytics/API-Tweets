@@ -46,11 +46,11 @@ app.use(passport.session());
 
 
 app.get('/', (req, res) => {
-    res.render('home', { user: req.user });
+    res.render('home');
 });
 
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', { user: req.user });
 });
 
 app.get('/login/twitter', passport.authenticate('twitter'));
@@ -60,6 +60,7 @@ app.get('/login/twitter/return', passport.authenticate('twitter', { failureRedir
 });
 
 app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
+  console.log(req.user);
   res.render('profile', { user: req.user });
 });
 
@@ -68,13 +69,11 @@ app.get('/busqueda', require('connect-ensure-login').ensureLoggedIn(), (req, res
 });
 
 app.post('/search', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
-    console.log("Valor 1: " + req.body.valor.v1);
     client.get('search/tweets', { q: req.body.valor.v1 }, (error, tweets, response) => {
-        for (var i = 0; i < tweets.statuses.length; i++) {
-            console.log(tweets.statuses[i].user.screen_name);
-        }
+        res.render('resultados', { resultado: tweets.statuses });
+
     });
-})
+});
 
 app.listen(app.get('port'), () => {
     console.log(`Node app is running at localhost: ${app.get('port')}`);
