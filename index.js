@@ -60,8 +60,8 @@ app.get('/login/twitter/return', passport.authenticate('twitter', { failureRedir
 });
 
 app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
-  console.log(req.user);
-  res.render('profile', { user: req.user });
+  console.log(req.user._json);
+  res.render('profile', { user: req.user._json });
 });
 
 app.get('/busqueda', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
