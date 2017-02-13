@@ -56,17 +56,27 @@
                           Log in <small> Twitter </small>
                       </h1>
                     </div>
-                    <div class="col-md-12">
-                        <% if (!user) { %>
-                            <div>
-                                Bienvenido, <a href="/login/twitter">Inicie sesión con Twitter</a>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Bienvenido
                             </div>
-                        <% } else { %>
-                            <div>
-                                Hola, <%= user.username %>. Consulta tu <a href="/profile">perfil</a> o realiza una <a href="/busqueda">busqueda</a>.
+                            <div class="panel-body">
+                                <% if (!user) { %>
+                                    <div>
+                                        <a class="btn btn-primary btn-block" href="/login/twitter">Inicie sesión con Twitter</a>
+                                    </div>
+                                    <% } else { %>
+                                        <div>
+                                            Hola,
+                                            <%= user.username %>. Consulta tu <a href="/profile">perfil</a> o realiza una <a href="/busqueda">busqueda</a>.
+                                        </div>
+                                        <% } %>
                             </div>
-                        <% } %>
+                        </div>
                     </div>
+                    <div class="col-md-3"></div>
                 </div>
             </div>
         </div>
