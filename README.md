@@ -40,3 +40,7 @@ Esta herramienta está destinada al análisis y respresentación de los datos de
 #### Joshua Perez García
 * Mail: alu0100818819@ull.edu.es
 * [Pagina Personal](https://joshuape.github.io/)
+
+## Enlaces de interés
+
+* Enlace a la [primera versión de la plataforma](https://canary-analytics.herokuapp.com)
