@@ -40,15 +40,20 @@
                     <li>
                         <a href="/login"><i class="fa fa-sign-in"></i> Log in</a>
                     </li>
-                    <li>
-                        <a href="/profile"><i class="fa fa-user"></i> Perfil</a>
-                    </li>
-                    <li>
-                        <a href="/busqueda"><i class="fa fa-search"></i> Busqueda</a>
-                    </li>
-                    <li>
-                        <a class="active-menu" href="/busqueda"><i class="fa fa-folder-o"></i> Resultados</a>
-                    </li>
+                    <% if (user) { %>
+                        <li>
+                            <a href="/profile"><i class="fa fa-user"></i> Perfil</a>
+                        </li>
+                        <li>
+                            <a href="/busqueda"><i class="fa fa-search"></i> Busqueda</a>
+                        </li>
+                        <li>
+                            <a class="active-menu" href="/busqueda"><i class="fa fa-folder-o"></i> Resultados</a>
+                        </li>
+                        <li>
+                            <a href="/logout"><i class="fa fa-search"></i> Log out</a>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
         </nav>

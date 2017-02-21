@@ -46,7 +46,7 @@ app.use(passport.session());
 
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', { user: req.user });
 });
 
 app.get('/login', (req, res) => {
@@ -64,13 +64,18 @@ app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), (req, res)
 });
 
 app.get('/busqueda', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
-  res.render('busqueda');
+  res.render('busqueda', { user: req.user });
 });
 
 app.post('/search', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
     client.get('search/tweets', { q: req.body.valor.v1 }, (error, tweets, response) => {
-        res.render('resultados', { resultado: tweets.statuses });
+        res.render('resultados', { resultado: tweets.statuses, user: req.user });
     });
+});
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
 });
 
 app.listen(app.get('port'), () => {
