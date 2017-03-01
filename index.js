@@ -3,6 +3,7 @@ const passport = require('passport');
 const Strategy = require('passport-twitter').Strategy;
 const Twitter = require('twitter');
 const app = express();
+const utils = require('./utils/tweets.js');
 const client = new Twitter({
   consumer_key: 'aDay6jhWc9b3y3Z31BRx6uXVc',
   consumer_secret: '6vbURPCBJSSQakw2t6eHvAY01HBong3rjnQbtGcr34ZNateN0s',
@@ -69,7 +70,13 @@ app.get('/busqueda', require('connect-ensure-login').ensureLoggedIn(), (req, res
 
 app.post('/search', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
     client.get('search/tweets', { q: req.body.valor.v1 }, (error, tweets, response) => {
-        res.render('resultados', { resultado: tweets.statuses, user: req.user });
+      console.log(tweets.statuses);
+      console.log("Total: " + utils.resultados(tweets.statuses)[0]);
+      console.log("Respuestas: " + utils.resultados(tweets.statuses)[1]);
+      console.log("Retweets: " + utils.resultados(tweets.statuses)[2]);
+      console.log("Originales: " + utils.resultados(tweets.statuses)[3]);
+      console.log("Media/urls: " + utils.resultados(tweets.statuses)[4]);
+        res.render('resultados', { estadisticas: utils.resultados(tweets.statuses), resultado: tweets.statuses, user: req.user });
     });
 });
 

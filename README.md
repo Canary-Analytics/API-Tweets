@@ -14,6 +14,7 @@ Esta herramienta está destinada al análisis y respresentación de los datos de
 * NodeJS + ExpressJS + EJS + Passport
 * Twitter API
 * Version control (GIT)
+* Gulp
 
 ## Desarrolladores
 
@@ -43,4 +44,4 @@ Esta herramienta está destinada al análisis y respresentación de los datos de
 
 ## Enlaces de interés
 
-* Enlace a la [primera versión de la plataforma](https://canary-analytics.herokuapp.com)
+* Enlace a la [primera versión de la plataforma](https://canary-analytics-v1.herokuapp.com/)

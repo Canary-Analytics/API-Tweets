@@ -492,6 +492,9 @@ ul.nav.nav-second-level.collapse.in {
     line-height: 1.428571429;
 }
 
+.estadisticas {
+    text-align: center;
+}
 
 /*----------------------------------------------
     MEDIA QUERIES
