@@ -70,12 +70,15 @@ app.get('/busqueda', require('connect-ensure-login').ensureLoggedIn(), (req, res
 
 app.post('/search', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
     client.get('search/tweets', { q: req.body.valor.v1 }, (error, tweets, response) => {
-      console.log(tweets.statuses);
       console.log("Total: " + utils.resultados(tweets.statuses)[0]);
       console.log("Respuestas: " + utils.resultados(tweets.statuses)[1]);
       console.log("Retweets: " + utils.resultados(tweets.statuses)[2]);
       console.log("Originales: " + utils.resultados(tweets.statuses)[3]);
       console.log("Media/urls: " + utils.resultados(tweets.statuses)[4]);
+      console.log("Impacto: " + utils.resultados(tweets.statuses)[5]);
+      console.log("Followers por usuario: " + utils.resultados(tweets.statuses)[6]);
+      console.log("Tweets por usuario: " + utils.resultados(tweets.statuses)[7]);
+
         res.render('resultados', { estadisticas: utils.resultados(tweets.statuses), resultado: tweets.statuses, user: req.user });
     });
 });
