@@ -1,6 +1,6 @@
 exports.resultados = (busqueda) => {
     let originales = (busqueda.length - getRetweets(busqueda) - getRespuestas(busqueda));
-    vector = [busqueda.length, getRespuestas(busqueda), getRetweets(busqueda), originales, getMedia(busqueda), impacto(busqueda), mediaFollowers(busqueda), getUsers(busqueda), alcance(busqueda), mediaTweets(busqueda)];
+    vector = [busqueda.length, getRespuestas(busqueda), getRetweets(busqueda), originales, getMedia(busqueda), impacto(busqueda), mediaFollowers(busqueda), getUsers(busqueda), alcance(busqueda), mediaTweets(busqueda), getDisp(busqueda), getRepeticiones(busqueda)];
     return vector
 }
 
@@ -49,7 +49,6 @@ function getUsers(busqueda) {
 
 function impacto(busqueda) {
     let contador = 0;
-    console.log(busqueda[0]);
     for (let i = 0; i < busqueda.length; i++) {
         contador += busqueda[i].user.followers_count;
     }
@@ -58,7 +57,6 @@ function impacto(busqueda) {
 
 function alcance(busqueda) {
     let contador = 0;
-    console.log(busqueda[0]);
     for (let i = 0; i < busqueda.length; i++) {
         contador += busqueda[i].retweet_count;
     }
@@ -83,20 +81,39 @@ function mediaTweets(busqueda) {
     return (contador / vector.length);
 }
 
-exports.countDevices = (salida) => {
-
-    let devices = ["Windows", "iOS", "Android", "Otros"];
+function getDisp(salida) {
+    let devices = ["Cliente Web", "iOS", "Android", "Otros"];
     let cnt = [0, 0, 0, 0];
 
     for (let i = 0; i < salida.length; i++) {
-        if ((salida[i].App == "twitter for windows phone") || (salida[i].App == "twitter for windows")) cnt[0]++;
-        else if ((salida[i].App == "twitter for ipad") || (salida[i].App == "twitter for iphone") || (salida[i].App == "twitter for mac")) cnt[1]++;
-        else if (salida[i].App == "twitter for android") cnt[2]++;
-        else cnt[3]++;
+        if (salida[i].source.includes("Windows") || salida[i].source.includes("Web Client")) {
+            cnt[0]++;
+        } else if (salida[i].source.includes("iPhone") || salida[i].source.includes("Mac") || salida[i].source.includes("iPad")) {
+            cnt[1]++;
+        } else if (salida[i].source.includes("Android")) {
+            cnt[2]++;
+        } else {
+            cnt[3]++;
+        }
     }
 
     let devicescounter = [devices, cnt];
     return devicescounter;
+}
+
+function getRepeticiones(busqueda) {
+    let vector = [];
+    for (let i = 0; i < busqueda.length; i++) {
+        vector.push(busqueda[i].user.screen_name);
+    }
+    let count = {};
+    vector.forEach((i) => {
+        count[i] = (count[i] || 0) + 1;
+    });
+
+    for (let i = 0; i < vector.length; i++) {
+      array[i]
+    }
 }
 
 function duplicados(vector) {
