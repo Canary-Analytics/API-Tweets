@@ -110,10 +110,6 @@ function getRepeticiones(busqueda) {
     vector.forEach((i) => {
         count[i] = (count[i] || 0) + 1;
     });
-
-    for (let i = 0; i < vector.length; i++) {
-      array[i]
-    }
 }
 
 function duplicados(vector) {

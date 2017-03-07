@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - Canary Analytics</title>
+    <title>WordCloud - Canary Analytics</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -14,6 +14,9 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <!-- JQuery -->
+    <script src="./d3/d3.js" charset="utf-8"></script>
+    <script src="./d3/d3.layout.cloud.js"></script>
+    <script src="./d3/d3.wordcloud.js"></script>
 </head>
 
 <body>
@@ -35,25 +38,25 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu" href="/"><i class="fa fa-home"></i> Home</a>
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
                     </li>
-										<li>
-												<a href="/login"><i class="fa fa-sign-in"></i> Log in</a>
-										</li>
+                    <li>
+                        <a href="/login"><i class="fa fa-sign-in"></i> Log in</a>
+                    </li>
                     <% if (user) { %>
-    										<li>
-    												<a href="/profile"><i class="fa fa-user"></i> Perfil</a>
-    										</li>
-    										<li>
+                        <li>
+                            <a href="/profile"><i class="fa fa-user"></i> Perfil</a>
+                        </li>
+                        <li>
                             <a href="/busqueda"><i class="fa fa-search"></i> Busqueda</a>
                         </li>
                         <li>
-                            <a href="/wordcloud"><i class="fa fa-cloud"></i> WordCloud</a>
+                            <a class="active-menu" href="/wordcloud"><i class="fa fa-cloud"></i> WordCloud</a>
                         </li>
                         <li>
                             <a href="/logout"><i class="fa fa-search"></i> Log out</a>
                         </li>
-                    <% } %>
+                        <% } %>
                 </ul>
             </div>
         </nav>
@@ -62,24 +65,33 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <div>
-                            <p align="center">
-                                <img id="imglogo" src="img/logo.png" alt="Logo">
-                            </p>
+                        <h1 class="page-header">
+                          Resultados <small> Twitter </small>
+                      </h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Resultados de la búsqueda
+                            </div>
+                            <div id='wordcloud'></div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
-
-    <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Custom Js -->
-    <script src="js/index.js"></script>
+        <!-- JS Scripts-->
+        <!-- jQuery Js -->
+        <script src="assets/js/jquery-1.10.2.js"></script>
+        <!-- Bootstrap Js -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- Custom Js -->
+        <script src="js/index.js"></script>
+        <script src="./js/example_words.js"></script>
 
 </body>
 

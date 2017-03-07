@@ -68,6 +68,10 @@ app.get('/busqueda', require('connect-ensure-login').ensureLoggedIn(), (req, res
   res.render('busqueda', { user: req.user });
 });
 
+app.get('/wordcloud', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
+  res.render('wordcloud', { user: req.user });
+});
+
 app.post('/search', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
     client.get('search/tweets', { q: req.body.valor.v1 }, (error, tweets, response) => {
       console.log(utils.resultados(tweets.statuses)[11]);
