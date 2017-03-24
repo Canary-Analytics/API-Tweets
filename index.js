@@ -75,7 +75,7 @@ app.get('/wordcloud', require('connect-ensure-login').ensureLoggedIn(), (req, re
 
 app.post('/search', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
     client.get('search/tweets', { q: req.body.valor.v1 }, (error, tweets, response) => {
-      fs.writeFileSync('./tweets.json',JSON.stringify(tweets.statuses));
+      //fs.writeFileSync('./tweets.json',JSON.stringify(tweets.statuses));
       console.log(utils.resultados(tweets.statuses)[11]);
         res.render('resultados', { estadisticas: utils.resultados(tweets.statuses), resultado: tweets.statuses, user: req.user });
     });
